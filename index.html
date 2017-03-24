@@ -19,16 +19,15 @@
                 <div class="container">
                     <img :src="logoSrc" :class="{'pull-left logo' : clickSingle}" alt="TB">
                     <hgroup class="pull-left">
-                        <h1>
-                            <a href="http://www.gametower.com.tw/"></a>{{title}}</h1>
+                        <h1 v-on:click="clickCount++">{{title}}</h1>
                         <h3>{{memo.split('').reverse().join('')}}</h3>
                     </hgroup>
                     <div id="social-icons" class="pull-right social-icon">
-                        <a href="javascript:void(0)" v-bind:title="title" target="_blank">
+                        <a href="javascript:void(0)" v-bind:title="title" id="sss" target="_blank" @click="clickIcon">
                             <img src="./images/facebook.png">
                             <font :style="{ color: activeColor, fontSize: fontSize + 'px' }">{{clickCount+1}}</font>
                         </a>
-                        <a href="javascript:void(0)" :title="title +'test'" target="_blank">
+                        <a href="javascript:void(0)" :title="title +'test'" target="_blank" @mouseover.once="clickIcon" @mouseout.once="clickIcon">
                             <img src="./images/googleplus.png"> {{clickSingle?'yes':'no'}}
                         </a>
                         </a>
@@ -155,7 +154,7 @@
                             <div class="widget-content">
                                 <div id="searchbox">
                                     <label for="txt-fb38ecdd-5813-4d10-8c5f-8d901c7c731e" style="display:none">Search</label>
-                                    <input type="text" placeholder="請輸入搜尋關鍵字" accesskey="s"><input type="button" value="搜尋" id="searchbutton">
+                                    <input type="text" placeholder="請輸入搜尋關鍵字" accesskey="s" @keyup="message=$event.target.value"><input type="button" value="搜尋" id="searchbutton">
                                 </div>
                             </div>
                         </div>
@@ -169,7 +168,7 @@
                             </h4>
                             <div class="widget-content">
                                 <p>
-                                    hihihihihihi
+                                    {{message}}
                                 </p>
                             </div>
                         </div>
@@ -192,7 +191,15 @@
                 clickSingle: false,
                 logoSrc: './images/Logo.jpg',
                 activeColor: 'red',
-                fontSize: 24
+                fontSize: 24,
+                message: ''
+            },
+            methods: {
+                clickIcon: function(event) {
+                    this.clickCount++;
+                    this.clickSingle = !this.clickSingle;
+                    console.log(event.target.tagName);
+                }
             }
         })
     </script>
