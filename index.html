@@ -17,7 +17,7 @@
         <header class="header">
             <div class="title-wrapper">
                 <div class="container">
-                    <img src="./images/logo.jpg" class="pull-left logo" alt="TB">
+                    <img :src="logoSrc" :class="{'pull-left logo' : canClick}" alt="TB">
                     <hgroup class="pull-left">
                         <h1>
                             <a href="http://www.gametower.com.tw/"></a>{{title}}</h1>
@@ -188,7 +188,8 @@
                 title: 'TB 的Vue2技術分享',
                 clickCount: 0,
                 memo: '進行Vue2實戰開發課程使用',
-                canClick: true
+                canClick: true,
+                logoSrc: './images/Logo.jpg'
             }
         })
     </script>
