@@ -17,18 +17,19 @@
         <header class="header">
             <div class="title-wrapper">
                 <div class="container">
-                    <img :src="logoSrc" :class="{'pull-left logo' : canClick}" alt="TB">
+                    <img :src="logoSrc" :class="{'pull-left logo' : clickSingle}" alt="TB">
                     <hgroup class="pull-left">
                         <h1>
                             <a href="http://www.gametower.com.tw/"></a>{{title}}</h1>
                         <h3>{{memo.split('').reverse().join('')}}</h3>
                     </hgroup>
                     <div id="social-icons" class="pull-right social-icon">
-                        <a href="javascript:void(0)" title="TB  on Facebook" target="_blank">
-                            <img src="./images/facebook.png"> {{clickCount+1}}
+                        <a href="javascript:void(0)" v-bind:title="title" target="_blank">
+                            <img src="./images/facebook.png">
+                            <font :style="{ color: activeColor, fontSize: fontSize + 'px' }">{{clickCount+1}}</font>
                         </a>
-                        <a href="javascript:void(0)" title="TB on Google+" target="_blank">
-                            <img src="./images/googleplus.png"> {{canClick?'yes':'no'}}
+                        <a href="javascript:void(0)" :title="title +'test'" target="_blank">
+                            <img src="./images/googleplus.png"> {{clickSingle?'yes':'no'}}
                         </a>
                         </a>
                     </div>
@@ -188,8 +189,10 @@
                 title: 'TB 的Vue2技術分享',
                 clickCount: 0,
                 memo: '進行Vue2實戰開發課程使用',
-                canClick: true,
-                logoSrc: './images/Logo.jpg'
+                clickSingle: false,
+                logoSrc: './images/Logo.jpg',
+                activeColor: 'red',
+                fontSize: 24
             }
         })
     </script>
