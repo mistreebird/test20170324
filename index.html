@@ -20,7 +20,12 @@
                     <img :src="logoSrc" :class="{'pull-left logo' : clickSingle}" alt="TB">
                     <hgroup class="pull-left">
                         <h1 v-on:click="clickCount++">{{title}}</h1>
-                        <h3>{{memo.split('').reverse().join('')}}</h3>
+                        <h3 v-if="clickSingle">{{memo.split('').reverse().join('')}}</h3>
+                        <h2 v-else>{{memo}}</h2>
+                        <template v-if="clickSingle">
+                            <h5>xxxxx</h5>
+                            <h4>ooooo</h4>
+                        </template>
                     </hgroup>
                     <div id="social-icons" class="pull-right social-icon">
                         <a href="javascript:void(0)" v-bind:title="title" id="sss" target="_blank" @click="clickIcon">
