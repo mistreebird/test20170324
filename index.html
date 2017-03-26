@@ -19,7 +19,7 @@
                 <div class="container">
                     <img :src="logoSrc" :class="{'pull-left logo' : clickSingle}" alt="TB">
                     <hgroup class="pull-left">
-                        <h1 v-on:click="clickCount++">{{title}}</h1>
+                        <h1 v-on:click="clickCount++">{{title | uppercase | lowercase | uppercase }}</h1>
                         <h3 v-if="clickSingle">{{memo.split('').reverse().join('')}}</h3>
                         <h2 v-else>{{memo}}</h2>
                         <template v-if="clickSingle">
@@ -116,6 +116,13 @@
         <!-- CONTAINER END -->
     </div>
     <script>
+        Vue.filter('uppercase', function(val) {
+            return val.toUpperCase();
+        });
+
+        Vue.filter('lowercase', function(val) {
+            return val.toLowerCase();
+        });
         var app = new Vue({
             el: '#app',
             data: {
@@ -168,7 +175,7 @@
                     console.log(event.target.tagName);
                 }
             }
-        })
+        });
     </script>
 </body>
 
